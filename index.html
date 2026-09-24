@@ -1,563 +1,262 @@
 <!DOCTYPE html>
 <html lang="ckb" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>هەڵسەنگاندنی ئاستی ئیمانی و ڕادەی پابەندبوون بە عیبادەتەکان 🧭</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f9;
-            color: #1a202c;
-            margin: 0;
-            padding: 15px;
-            direction: rtl;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-        .main-header {
-            background-color: #1a365d;
-            color: white;
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        .main-header h1 {
-            margin: 0 0 15px 0;
-            color: #ecc94b;
-            font-size: 24px;
-        }
-        .main-header p {
-            margin: 0;
-            font-size: 15px;
-        }
-        .info-box {
-            background-color: #ebf8ff;
-            border-right: 5px solid #3182ce;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        .guide-box {
-            background-color: #fefcbf;
-            border-right: 5px solid #d69e2e;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
-        .guide-box h3, .info-box h3 {
-            margin-top: 0;
-            margin-bottom: 8px;
-            color: #2d3748;
-        }
-        .section-header {
-            background-color: #2b6cb0;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-        .section-desc {
-            background-color: #edf2f7;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: #4a5568;
-        }
-        .question-card {
-            border: 1px solid #e2e8f0;
-            border-right: 4px solid #3182ce;
-            background-color: #fff;
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-        .question-title {
-            font-weight: bold;
-            font-size: 16px;
-            color: #2d3748;
-            margin-bottom: 8px;
-        }
-        .question-text {
-            font-size: 14px;
-            color: #4a5568;
-            margin-bottom: 12px;
-        }
-        .score-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: bold;
-            color: #2d3748;
-            font-size: 14px;
-        }
-        .score-input {
-            width: 90px;
-            padding: 6px 10px;
-            border: 1px solid #cbd5e0;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 15px;
-            outline: none;
-        }
-        .score-input:focus {
-            border-color: #3182ce;
-            box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.2);
-        }
-        .btn-calculate {
-            display: block;
-            width: 100%;
-            background-color: #38a169;
-            color: white;
-            border: none;
-            padding: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 30px;
-            transition: background 0.2s;
-        }
-        .btn-calculate:hover {
-            background-color: #2f855a;
-        }
-        .result-section {
-            display: none;
-            margin-top: 30px;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #f7fafc;
-            border: 2px dashed #38a169;
-        }
-        .result-section h2 {
-            margin-top: 0;
-            color: #2d3748;
-            text-align: center;
-        }
-        .final-score-display {
-            text-align: center;
-            font-size: 32px;
-            font-weight: bold;
-            color: #38a169;
-            margin: 15px 0;
-        }
-        .eval-status {
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #2b6cb0;
-        }
-        .notes-list {
-            background-color: #fff;
-            padding: 15px 20px;
-            border-radius: 6px;
-            border: 1px solid #e2e8f0;
-            font-size: 14px;
-            color: #4a5568;
-        }
-        .notes-list p {
-            margin: 8px 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>هەڵسەنگاندنی ئاستی ئیمانی و ڕادەی پابەندبوون بە عیبادەتەکان</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f9;
+      color: #1a202c;
+      margin: 0;
+      padding: 15px;
+      direction: rtl;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 25px;
+      font-size: 22px;
+    }
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+    .question-block {
+      background: #f8fafc;
+      border-right: 4px solid #3182ce;
+      padding: 15px;
+      margin-bottom: 18px;
+      border-radius: 6px;
+    }
+    .question-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2d3748;
+    }
+    label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-left: 8px;
+    }
+    .btn {
+      background-color: #3182ce;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      margin-top: 15px;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background-color: #2b6cb0;
+    }
+    .btn-next {
+      background-color: #38a169;
+    }
+    .btn-next:hover {
+      background-color: #2f855a;
+    }
+    .result-box {
+      background-color: #e6fffa;
+      border: 1px solid #319795;
+      color: #234e52;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 6px;
+      display: none;
+      font-weight: bold;
+    }
+    .final-box {
+      text-align: center;
+      padding: 20px;
+      background: #edf2f7;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="main-header">
-        <h1>هەڵسەنگاندنی ئاستی ئیمانی و ڕادەی پابەندبوون بە عیبادەتەکان 🧭</h1>
-        <p>ئەم ڕێبەرە هاوکاریت دەکات بۆ هەڵسەنگاندنی ئاستی پابەندبوونت بە ئیمان و عیبادەتەکان و خۆپاراستن لە حەرامکراوەکان، تاوەکو بزانیت تا چەند ئیمانەکەت کاریگەری لەسەر ژیانی ڕۆژانەت هەیە.</p>
+  <h1>هەڵسەنگاندنی ئاستی ئیمانی و ڕادەی پابەندبوون بە عیبادەتەکان</h1>
+
+  <!-- بەشی یەکەم -->
+  <div id="sec1" class="section active">
+    <h2>بەشی یەکەم: نوێژەکان و پابەندبوون پێیانەوە</h2>
+    
+    <div class="question-block">
+      <div class="question-title">١. ئایا نوێژە فەرزەکان لە کاتی خۆیاندا ئەنجام دەدەیت؟</div>
+      <label><input type="radio" name="q1" value="5"> بەردەوام لە کاتی خۆیاندا (5)</label>
+      <label><input type="radio" name="q1" value="3"> زۆربەی کات لە کاتی خۆیاندا (3)</label>
+      <label><input type="radio" name="q1" value="1"> هەندێک جار دوا دەکەوێت (1)</label>
     </div>
 
-    <div class="info-box">
-        <h3>تێبینی:</h3>
-        ۱ـ ئەم ڕێبەرە لەلایەن (زانکۆی زادی)یەوە دروستکراوە، هەموو کەسێکیش دەتوانێت سوودی لێ ببینێت و بڵاوی بکاتەوە.<br>
-        ۲ـ هیچ زانیارییەکی کەسی تۆمارناکرێت و نمرەکانت تەنها لای خۆت دەردەکەوێت.
+    <button class="btn" onclick="calcSec(1)">ئەنجامی بەشی یەکەم 📊</button>
+    <div id="res1" class="result-box"></div>
+    <br>
+    <button id="next1" class="btn btn-next" style="display:none;" onclick="goSec(2)">چوون بۆ بەشی دووەم ⬅️</button>
+  </div>
+
+  <!-- بەشی دووەم -->
+  <div id="sec2" class="section">
+    <h2>بەشی دووەم: پەیوەندی لەگەڵ قورئانی پیرۆز</h2>
+    
+    <div class="question-block">
+      <div class="question-title">٢. ڕادەی خوێندنەوەی ڕۆژانەی قورئان چەندەیە؟</div>
+      <label><input type="radio" name="q2" value="5"> ڕۆژانە بەشێک یان زیاتر (5)</label>
+      <label><input type="radio" name="q2" value="3"> ڕۆژانە بڕێکی کەم (3)</label>
+      <label><input type="radio" name="q2" value="1"> تەنها لە هەینیدا یان ناوبەناو (1)</label>
     </div>
 
-    <div class="guide-box">
-        <h3>💡 ڕێنمایی هەڵسەنگاندن (پێوەری نمرەکان):</h3>
-        بۆ هەر پرسیارێک نمرەیەک لە نێوان (0 تا 100) بۆ خۆت دابنێ بەپێی ئاستی پابەندبوونت لە ژیانی ڕۆژانەدا، بەم شێوازەی خوارەوە:<br>
-        ۱ـ 90 - 100: (نایاب) پابەندبوونێکی بەرز و بەردەوام لەژیانی ڕۆژانەت.<br>
-        ۲ـ 75 - 89: (زۆر باش) پابەندبوونێکی باش، لەگەڵ هەبوونی کەمێک کەمتەرخەمی.<br>
-        ۳ـ 50 - 74: (پەسەند) ئاستێکی مامناوەند، کە پێویستی بە هەوڵ و چاکسازی زیاتر هەیە.<br>
-        ٤ـ 0 - 49: (لاواز) کەمتەرخەمییەکی بەرچاوت هەیە، پێویستی بە ئاگادربوونەوەو پێداچوونەوەیە.
+    <button class="btn" onclick="calcSec(2)">ئەنجامی بەشی دووەم 📊</button>
+    <div id="res2" class="result-box"></div>
+    <br>
+    <button id="next2" class="btn btn-next" style="display:none;" onclick="goSec(3)">چوون بۆ بەشی سێیەم ⬅️</button>
+  </div>
+
+  <!-- بەشی سێیەم -->
+  <div id="sec3" class="section">
+    <h2>بەشی سێیەم: زیکر و دوعاکان</h2>
+    
+    <div class="question-block">
+      <div class="question-title">٣. ئایا پابەندیت بە زیکرەکانی بەیانیان و ئێواران؟</div>
+      <label><input type="radio" name="q3" value="5"> بەردەوام دەیانخوێنم (5)</label>
+      <label><input type="radio" name="q3" value="3"> هەندێک جار لەبیرم دەچێت (3)</label>
+      <label><input type="radio" name="q3" value="1"> بەدەگمەن دەیانخوێنم (1)</label>
     </div>
 
-    <!-- بەشی یەکەم -->
-    <div class="section-header">🕌 بەشی یەکەم: بنەماکانی ئیمان و ئیسلام:</div>
-    <div class="section-desc">
-        دەبێت ئیمانداری ڕاستەقینە بزانێت کە ئیمان تەنها قسە نییە، بەڵکو کرداریشە. هەروەها دەبێت پابەند بێت بە جێبەجێکردنی بنەما سەرەکییەکانی ئیسلام و ڕەنگدانەوەی تەواوی لەژیانی ڕۆژانەیدا هەبێت.
+    <button class="btn" onclick="calcSec(3)">ئەنجامی بەشی سێیەم 📊</button>
+    <div id="res3" class="result-box"></div>
+    <br>
+    <button id="next3" class="btn btn-next" style="display:none;" onclick="goSec(4)">چوون بۆ بەشی چوارەم ⬅️</button>
+  </div>
+
+  <!-- بەشی چوارەم -->
+  <div id="sec4" class="section">
+    <h2>بەشی چوارەم: ڕۆژوو و نەوافلەکان</h2>
+    
+    <div class="question-block">
+      <div class="question-title">٤. ئایا بێجگە لە ڕەمەزان ڕۆژووی سوننەت دەگریت؟</div>
+      <label><input type="radio" name="q4" value="5"> بەردەوام (دووشەممە و پێنجشەممە یان ڕۆژانی سپی) (5)</label>
+      <label><input type="radio" name="q4" value="3"> هەندێک جار لە بۆنەکاندا (3)</label>
+      <label><input type="radio" name="q4" value="1"> تەنها ڕەمەزان دەگرم (1)</label>
     </div>
 
-    <div class="question-card">
-        <div class="question-title">۱ـ شایەتوومان:</div>
-        <div class="question-text">ئایا شایەتوومان ڕەنگیداوەتەوە لەسەر ژیانی ڕۆژانەت، زۆر لەسەر زمانت دووبارەی دەکەیتەوەو بەکردەیی جێبەجێی دەکەیت و خۆت دەپارێزیت لەشتێک کە پێچەوانەی شایەتوومان بێت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
+    <button class="btn" onclick="calcSec(4)">ئەنجامی بەشی چوارەم 📊</button>
+    <div id="res4" class="result-box"></div>
+    <br>
+    <button id="next4" class="btn btn-next" style="display:none;" onclick="goSec(5)">چوون بۆ بەشی پێنجەم ⬅️</button>
+  </div>
+
+  <!-- بەشی پێنجەم -->
+  <div id="sec5" class="section">
+    <h2>بەشی پێنجەم: ڕەوشت و مامەڵەی ڕۆژانە</h2>
+    
+    <div class="question-block">
+      <div class="question-title">٥. ڕادەی پارێزگاریکردنت لە زمان لە غەیبەت و درۆ؟</div>
+      <label><input type="radio" name="q5" value="5"> زۆر ئاگادارم و زوو تۆبە دەکەم (5)</label>
+      <label><input type="radio" name="q5" value="3"> هەوڵدەدەم بەڵام هەندێک جار تووش دەبم (3)</label>
+      <label><input type="radio" name="q5" value="1"> زۆر ئاگاداری زاراوەکانم نیم (1)</label>
     </div>
 
-    <div class="question-card">
-        <div class="question-title">۲ـ تەوحید:</div>
-        <div class="question-text">ئایا تاچەند لەخەمی ئەوەدایت کە تەوحیدەکەت بپارێزیت لەهەر شتێک کە لێڵی بکات، وە عیبادەتەکان تەوحیدی تیایەو تەنها بۆ خوای گەورە ئەنجامی دەدەیت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
+    <button class="btn" onclick="calcSec(5)">ئەنجامی بەشی پێنجەم 📊</button>
+    <div id="res5" class="result-box"></div>
+    <br>
+    <button id="next5" class="btn btn-next" style="display:none;" onclick="goSec(6)">چوون بۆ بەشی شەشەم ⬅️</button>
+  </div>
+
+  <!-- بەشی شەشەم -->
+  <div id="sec6" class="section">
+    <h2>بەشی شەشەم: بەخشین و کاری خێرخوازی</h2>
+    
+    <div class="question-block">
+      <div class="question-title">٦. ڕادەی بەخشینی سەدەقە و یارمەتیدانی هەژاران؟</div>
+      <label><input type="radio" name="q6" value="5"> مانگانە/ڕۆژانە بڕێک دەرەکەم (5)</label>
+      <label><input type="radio" name="q6" value="3"> کاتێک هەژارێک بێت یان لە بۆنەکان (3)</label>
+      <label><input type="radio" name="q6" value="1"> زۆر بەدەگمەن (1)</label>
     </div>
 
-    <div class="question-card">
-        <div class="question-title">۳ـ ئیمان بەخوای گەورە:</div>
-        <div class="question-text">خوای گەورە خۆی بەبەندەکانی ناساندووە لەڕێی ناو و سیفات و ئایەتە کەونییەکان، ئایا ئەوانە بوونەتە هۆکاری زیادبوونی ئیمانت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
+    <button class="btn" onclick="calcSec(6)">ئەنجامی بەشی شەشەم 📊</button>
+    <div id="res6" class="result-box"></div>
+    <br>
+    <button id="next6" class="btn btn-next" style="display:none;" onclick="showFinal()">بینیینی ئەنجامی کۆتایی 🏆</button>
+  </div>
+
+  <!-- بەشی ئەنجامی کۆتایی -->
+  <div id="secFinal" class="section">
+    <div class="final-box">
+      <h2>ئەنجامی گشتی و کۆتایی ڕاپرسییەکە</h2>
+      <p id="totalScoreText" style="font-size: 20px; font-weight: bold; color: #2b6cb0;"></p>
+      <p id="feedbackText" style="font-size: 16px; margin-top: 10px;"></p>
+      <br>
+      <button class="btn" onclick="location.reload()">دووبارەکردنەوەی ڕاپرسی 🔄</button>
     </div>
+  </div>
 
-    <div class="question-card">
-        <div class="question-title">٤ـ ئیمان هێنان بە مەلائیکەتەکان:</div>
-        <div class="question-text">لەبنەما سەرەکییەکانی ئیمان ئیمان هێنانە بە مەلائیکەتەکان، ئایا هەست بە بوونیان دەکەیت کە کردارەکانت دەنوسن؟ ئەمە دەبێتە هۆی ئەوەی زیاتر ئاگاداری ڕەفتارەکانت بیت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٥ـ ئیمان هێنان بە کتێبە ئاسمانییەکان:</div>
-        <div class="question-text">ئایا قورئان دەکەیتە بەرنامەی ژیانت و دەستووری ڕەفتار و کردەوەکانت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٦ـ ئیمان هێنان بە پێغەمبەران:</div>
-        <div class="question-text">ئایا پێغەمبەر (صلی الله علیه وسلم) دەکەیتە پێشەوا و مامۆستای ژیانت لە هەموو ڕوویەکەوە؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۷ـ ئیمان هێنان بە ڕۆژی دوایی:</div>
-        <div class="question-text">ئایا لە سەرجەم کارەکانتدا حساب بۆ ڕۆژی دوایی و لێپرسینەوەی خوای گەورە دەکەیت و ڕۆژانە ئەوە لەخەیاڵتە کە ڕۆژێک دێت بەبێ هیچ تەرجومانێک لەبەردەم خوای گەورە ڕادەوەستین و لێپرسینەوەمان لێدەکات لەورد و درشتی ڕەفتارەکانمان؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٨ـ ئیمان هێنان بە قەزاو قەدەر:</div>
-        <div class="question-text">لەبنەماکانی ئیمان،ئیمان هێنانە بەوەی خوای گەورە هەموو شتێکی نووسیوەو تەقدیری کردووە، هیچ شتێک بەبێ ویستی خوای گەورە ڕوونادات، ئایا تاچەند لەکاتی خۆشی وناخۆشیدا ڕازیت بەو بەشەی خوای گەورە پێتی داوەو هەست دەکەیت هەرچی تووشت دەبێت بە عیلم و تەقدیری خوای گەورە ڕوودەدات و کاریگەری لەسەرت هەیە؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۹ـ نوێژکردن:</div>
-        <div class="question-text">ئایا نوێژەکانت لە کاتی خۆیدا بە خشوع و بەپێی مەرجەکانی ئەنجام دەدەیت؟ (بۆ پیاوان) لە مزگەوت ئەنجامیان دەدەیت؟ وە ڕوودەدات کە نوێژێکت بەبێ عوزر بچێت؟ کە نوێژەکەشت چوو قەزاکردنەوەی دوا دەخەیت یان هەر قەزای ناکەیتەوە؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۱۰ـ زەکاتدان 💰</div>
-        <div class="question-text">ئایا زەکاتی ماڵەکەت دەردەکەیت ئەگەر گەیشتبێتە ڕادەی پێویست (نیساب)؟ زۆر بەوردی حسابی دەکەیت و هیچ کەمتەرخەمی تیا ناکەیت؟ لەکاتی دەرکردنی زەکاتەکەش ئەوە لەنییەتت دایە کە ئەم زەکاتە پاککەرەوەی ماڵ و دەروونتە؟ ئەگەر تۆ ماڵێکی وات نییە بگاتە ڕادەی زەکات، نمرەکە بەو ئەندازەیە دابنێ کە نییەت هەیە هەرکات بوویتە خاوەن نیسابی زەکات چۆن دەریدەکەیت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۱۱ـ ڕۆژووی ڕەمەزان</div>
-        <div class="question-text">ئایا بە جوانی و دوور لە گوناح و خراپەکاری ڕۆژووی مانگی ڕەمەزان دەگریت؟ وە ڕوودەدات کە ڕۆژویەکی ڕەمەزان بەبێ عوزر نەگریت؟ کە نەتگرت قەزای نەکەیتەوە؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۱۲ـ حەجکردن</div>
-        <div class="question-text">ئایا حەجت ئەنجامداوە یان ئارەزوو و هەوڵی جددیت هەیە بۆ ئەنجامدانی کاتێک توانایت هەبێت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <!-- بەشی دووەم -->
-    <div class="section-header">🌙 بەشی دووەم: سوننەتەکان</div>
-
-    <div class="question-card">
-        <div class="question-title">۱ـ نوێژی سوننەتە ڕاتیبەکان:</div>
-        <div class="question-text">ئایا بەردەوامیت لەسەر نوێژە سوننەتەکانی پێش و دوای نوێژە فەرزەکان؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۲ـ شەونوێژ (قیام اللیل) و ویتر:</div>
-        <div class="question-text">ئایا بەردەوامیت لەسەر ئەنجامدانی شەونوێژو نوێژی وتر؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۳ـ ڕۆژووی سوننەت:</div>
-        <div class="question-text">ئایا ڕۆژووە سوننەتەکان (دووشەممە و پێنجشەممە، ڕۆژانی سپی، شەشەڵان، ڕۆژووی عەڕەفە، ...) دەگریت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٤ـ بەخشین💰</div>
-        <div class="question-text">ئایا بەردەوامیت لەسەر بەخشینی سەدەقە بە هەژاران؟ ئایا بڕێکی دیاریکراوت داناوە کە بەردەوام ئەو بڕە ببەخشیت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٥ـ عومرەکردن 🕋</div>
-        <div class="question-text">ئایا عومرەت ئەنجامداوە یان بەردەوام حەزی ئەنجامدانیت هەیە کاتێک دەرفەت و توانات هەبێت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <!-- بەشی سێیەم -->
-    <div class="section-header">❤️ بەشی سێیەم: کردەوەکانی دڵ:</div>
-
-    <div class="question-card">
-        <div class="question-title">۱ـ ئیخڵاس:</div>
-        <div class="question-text">ئایا کارەکانت تەنها لەپێناو ڕەزامەندی خوای گەورەیە و دووری لە ڕیاکاری؟ بەردەوام موڕاقەبەی دڵت دەکەیت بۆ پارێزگاری لە ئیخڵاست؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۲ـ یەقین:</div>
-        <div class="question-text">حاڵت لەگەڵ یەقیندا چۆنە؟ یەقین بە ڕبوبییەت و کەماڵی خوا، یەقین بەوەی هەموو شتێک بە ویستی خوایە، یەقین بە بەڵێنەکانی خوای گەورە، یەقین بە قەزاو قەدەری خوا، یەقین بە بوونی حیکمەت لە قەدەر، .....</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۳ـ تەفەکورو تێڕامان:</div>
-        <div class="question-text">ئایا خوای گەورە دەپەرستی بە تەفەکورو تێڕامان؟ تێڕامان لە گەورەیی خوا، لە دەسەڵات و توانای، لە نیعمەت و بەخششەکانی، لە ئەمرو نەهییەکانی، لەئایەتە شەرعی و کەونییەکان، لە ڕۆژی دوایی، ......</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٤ـ خشوع:</div>
-        <div class="question-text">خۆت چۆن دەبینیت لە خشوع بۆ خوای گەورەو ملکەچی بۆی؟ ئایا سوریت لەسەر کارکردن لەهۆکارەکانی بەدەستهێنانی خشوع؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٥ـ تەوەککول:</div>
-        <div class="question-text">ئایا بەدڵ تەوەککولت لەسەر خوایە؟ کاروبارەکانی دین و دونیات دەسپێری بەخوای گەورە بۆ بەدەستهێنانی سوودو لادانی زیانەکان؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٦ـ موڕاقەبە:</div>
-        <div class="question-text">ئایا ڕۆژانە هەستی ئەوەت کە خوای گەورە چاودێرە بەسەرتەوەو دەتبینێت و قسەکانت دەبیستێت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۷ـ وەرع و خۆپارێزی:</div>
-        <div class="question-text">خۆت لەوشتانە دەپارێزیت کە شوبهەو گومانی لەسەرە نەبادا بکەویتە حەرامەوە؟ ئایا واز لەشتێک دەهێنیت لەترسی تووشی حەرام ببیت هەرچەندە یەقینیشت نەبێت کە حەرامە؟ لە قسەو کردەوەو خواردن و خواردنەوەو جلوبەرگ و ...</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٨ـ خۆشەویستی:</div>
-        <div class="question-text">ئەندازەی خۆشەویستیت بۆ خوای گەورە چەندە؟ وە بۆ ئەو کەس و شتانەی کە خوا خۆشی ئەوێن؟ تاچەند سوریت لەسەر ئەو هۆکارانەی خۆشەویستی خوا بەدەستدەهێنن؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۹ـ ترس:</div>
-        <div class="question-text">ترست لەخوا، لە توڕەبوونی چەندە؟ تاچەند ئەو ترسەت لە گوناح و تاوان دەتگێڕێتەوە؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۱۰ـ ئارامگری:</div>
-        <div class="question-text">ئەندازەی ئارامگریت لەسەر ئەنجامدانی عیبادەتەکان، وازهێنان لەحەرام، تووشبوون بە بەڵاو موسیبەت چەندە؟ تاچەند هەوڵی بەدەستهێنانی زیاتری ئارامگری دەدەیت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۱۱ـ ڕازی بوون:</div>
-        <div class="question-text">ڕازی بوون لە گەورەترینی عیبادەتەکانی دڵە، چەندین جۆری هەیە، لەوانە: ڕازی بوون بەوەی خوای گەورە تاکە پەرستراو و ئامانجت بێت، ڕازی بیت بە دین و شەریعەتەکەی، ڕازی بیت بەو عیبادەتانەی بۆی داناویت، ڕازی بوون بە قەدەرەکانی. تاچەند ڕازیت بەوانەو دڵت ئارامە بەو ڕازی بوونەو هیچ گلەییەک لەناختدا نییە؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۱۲ـ شوکرانەبژێری:</div>
-        <div class="question-text">نیعمەتەکانی خوای گەورە لەژمارە نایەن، ئاستی شوکرانەبژێریت چەندە بەدڵ و زمان و کردەوە؟ تاچەند هەوڵی بەدەستهێنانی زیاتری شوکرانەبژێری دەدەیت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۱۳ـ شەرم:</div>
-        <div class="question-text">ئاستی شەرمکردنت لەخوای گەورە چەندە؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۱٤ـ تۆبەکردن:</div>
-        <div class="question-text">ئاستی تەوبەکردنت چەندە لەتاوانەکان؟ یان لەو کەمتەرخەمییانەی هەتبووە؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <!-- بەشی چوارەم -->
-    <div class="section-header">📖 بەشی چوارەم: زیکر و دوعا و ئەوراد</div>
-    <div class="section-desc">
-        زیکرو دوعاکان لەباشترینی عیبادەتەکانت بۆ بەرزبوونەوەی پلەی ئیمانت، هەموو عابد و پیاوچاکان پەیوەندییەکی تایبەتییان هەبووە بە زیکرو دوعاوە.
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۱ـ زیکرەکانی بەیانیان و ئێواران:</div>
-        <div class="question-text">ئایا بەردەوامیت لەسەر خوێندنی زیکرە جێگیربووەکانی بەیانیان و ئێواران؟ وە زیکرەکانی تر کەپەیوەستن بەکاتێکی دیاریکراوەوە وەکو: (زیکرەکانی خەوتن و لەخەو هەستان، دەرچوون و گەڕانەوە بۆ ماڵ، خواردن و خواردنەوە، سەفەر، مزگەوت....). وە لەکاتی خوێندنی زیکرەکان واتاکانی ئامادەن لات؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۲ـ زیکرو تەسبیحات:</div>
-        <div class="question-text">کەسی عابد و خواناس هەردەبێ ڕۆژانە ویردێکی دیاریکراوی هەبێت لە (ئیستیغفار و تەسبیح و تەحمید و تەهلیل) بەپێی توانا پابەند بێت پێوەی، تەنها لەکاتی ناچاری لەدەستی دەچێت. ئایا تۆ لەوانەی کە خوای گەورە مۆفەقی کردووە بۆ ئەم عیبادەتە؟ ڕادەی پابەندبوونت پێوەی چەندە؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۳ـ خوێندنی قورئان:</div>
-        <div class="question-text">ئایا ویردێکی ڕۆژانەت هەیە لە خوێندنەوەی قورئانی پیرۆز؟ تاچەند پابەندی پێوەی؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٤ـ حیفزی قوڕئان و موڕاجەعەکردنەوەی:</div>
-        <div class="question-text">تاچەند ویردێکی ڕۆژانەت هەیە بۆ حیفزی قوڕئان و موڕاجەعەکردنەوەی؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <!-- بەشی پێنجەم -->
-    <div class="section-header">🤝 بەشی پێنجەم: ئەخلاق و مامەڵەکردنەکان</div>
-
-    <div class="question-card">
-        <div class="question-title">۱ـ چاکەکردن لەگەڵ دایک و باوک:</div>
-        <div class="question-text">ئایا ڕێز و گوێڕایەڵی و چاکەکاریت بەرامبەر دایک و باوکت لە ئاستی پێویستدایە؟ هەست بەوە دەکەیت کە ڕازی بوونی ئەوان لە ڕازیبوونی خوای گەورەوەیەو بە چاکەکردن لەگەڵیان پلەت لای خوای گەورە بەرزدەبێتەوە؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۲ـ سیلەی ڕەحم (سەردانی خزم و کەسوکار):</div>
-        <div class="question-text">لە عیبادەتی سیلەی ڕەحم ئاستی خۆت چۆن هەڵدەسەنگێنیت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۳ـ ڕەوشتی بەرز:</div>
-        <div class="question-text">ئاستی خۆڕازاندنەوەت بە ڕەوشتە بەرزەکان چەندە؟ لە ڕاستگۆیی، ئەمانەت پارێزی، نەرمونیانی، تەوازوع، ڕێزگرتنی گەورە، بەزەیی بە بچوکدا، ..... ئەنجامدانی ئەمانە وەکو عیبادەت سەیر دەکەیت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٤ـ چاکبوون لەگەڵ دراوسێ:</div>
-        <div class="question-text">حاڵت لەگەڵ دراوسێکانت چۆنە؟ تاچەند مافیان دەپارێزیت؟ تاچەند ئەمە بە عیبادەت سەیردەکەیت؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٥ـ زیان نەگەیاندن بە خەڵک:</div>
-        <div class="question-text">تاچەند خۆت دەپارێزیت لە زیانگەیاندن بە خەڵکی؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <!-- بەشی شەشەم -->
-    <div class="section-header">🚫 بەشی شەشەم: خۆپاراستن لە حەرامکراوەکان</div>
-    <div class="section-desc">
-        خۆپاراستن لە حەرامکراوەکان بەشێکی گەورەی ئیمانی لەسەر وەستاوە، زۆرێک لەخەڵکی خۆپارێزی هەیە لەتاوانەکان بەڵام بەبێ ئەوەی نرخی گەورەییەکەی و کاریگەرییەکەی بزانیت لەژیانیدا. بۆیە لەسەر کەسی عابد پێویستە ڕەچاوی ئەم لایەنە بکات.<br>
-        <b>تێبینی:</b> چەندێک ڕادەی خۆپاراستنت لەتاوانەکە زیاتر بوو، نمرەی بەرزتر بۆخۆت دابنێ.
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۱ـ تاوانەکانی زمان:</div>
-        <div class="question-text">تاچەند خۆت دەپارێزیت لەتاوانەکانی زمان، وەکو: درۆ، غەیبەت، دووزمانی، بوختان، گاڵتەپێکردن وڕابواردن، زۆر قسەی بی سوود، موناقەشەی ناحەق.....</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۲ـ نەخۆشییەکانی دڵ:</div>
-        <div class="question-text">تاچەند خۆت لەنەخۆشییەکانی دەپارێزیت، وەکو: حەسودی، ڕق وکینە، خۆبەگەورەزانین، بەخۆسەرسامبوون، بەکەم سەیرکردنی خەڵک.....</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۳ـ ڕیابازی:</div>
-        <div class="question-text">تاچەند خۆت لە ڕیابازی دەپارێزیت؟ چەند لەم نەخۆشییە ترسناکە دەترسیە؟ تاچەند لەهەوڵدایت بەتەواوی خۆتی لێ پاک بکەیتەوەو موحاسەبەی نەفست دەکەیت لەسەری؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٤ـ زیناو ئەوەی دەتگەیەنێت پێی:</div>
-        <div class="question-text">تاچەند خۆپارێزیت هەیە لە: تێکەڵی نامەحرەم، خۆڕازندنەوەی ناشەرعی، نەزەری حەرام، پەیوەندی ناشەرعی ڕاستەوخۆ یان لەڕێی مۆبایلەوە.....؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٥ـ حەرامکراوەکانی تایبەت بە سەروەت و سامان:</div>
-        <div class="question-text">تاچەند خۆپارێزیت هەیە لە: ڕیبا، خواردنی ماڵی خەڵکی بەناحەق، دزی، بەرتیل، قومار، زێدەڕۆیی لەسەرفکردن، ......</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">٦ـ خواردن و خواردنەوەی حەرام:</div>
-        <div class="question-text">تاچەند خۆپارێزیت هەیە لە: خواردنەوەی مەشڕوب، جگەرە، هەر خواردن و خواردنەوەیەکی تری حەرام؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <div class="question-card">
-        <div class="question-title">۷ـ گوێگرتنی حەرام:</div>
-        <div class="question-text">تاچەند خۆپارێزیت هەیە لە گوێگرتنی شتی حەرام، وەکو: مۆسیقا، گۆرانی ناشەرعی، قسەی ناشەرعی، غەیبەت و بوختان و دووزمانی، ......؟</div>
-        <div class="score-row">نمرەکەت (0 - 100): <input type="number" min="0" max="100" class="score-input score-field" value="0"></div>
-    </div>
-
-    <button class="btn-calculate" onclick="calculateResult()">📝 ئەنجامەکەم بۆ بەدیاریبهێنە</button>
-
-    <!-- بەشی دەرئەنجامی کۆتایی -->
-    <div id="resultSection" class="result-section">
-        <h2>📝 دەرئەنجامی کۆتایی:</h2>
-        <div class="final-score-display" id="averageScore">0 / 100</div>
-        <div class="eval-status" id="evalStatus"></div>
-
-        <div class="notes-list">
-            <p>دوای پڕکردنەوەی هەموو نمرەکان، تێکرا و ناوەندی نمرەکانت وەربگرە. ئەم هەڵسەنگاندنە ئامرازێکە بۆ ئاگاداربوونەوە لە کەمتەرخەمییەکان و زانینی خاڵە بەهێزەکانت تاوەکو بەردەوام بیت لەسەر گەشەپێدانی ئیمانیت.</p>
-            <p><b>چەند تێبینییەک:</b></p>
-            <p>۱ـ بزانە عیبرەت بەو نمرانە نییە کە نیشانت ئەدات، بەڵکو عیبرەت بە قبوڵبوونە لای خوای گەورە.</p>
-            <p>۲ـ ئەم نمرانە تەنها بیرخستنەوەیەکە بۆت تا کێشەکانی خۆت بزانیت و دەستبکەیت بە چارەسەرکردنیان، بزانە تۆ هێشتا لەدنیای تاقیکردنەوەدایت و دەرفەتت لەبەردەست ماوە تا بگەیت بە پلە بەرزەکانی ئیمان و تەقوا.</p>
-            <p>۳ـ ئامان! نەکەیت بتەوێت بەیەکجار هەموو کەمتەرخەمییەکانت چاک بکەیت. بزانە باشترین کردەوە ئەوەیە بەردەوام بیت لەسەری با کەمیش بێت.</p>
-        </div>
-    </div>
 </div>
 
 <script>
-function calculateResult() {
-    let fields = document.querySelectorAll('.score-field');
-    let total = 0;
-    let count = fields.length;
+  let scores = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 };
 
-    fields.forEach(field => {
-        let val = parseFloat(field.value);
-        if (isNaN(val) || val < 0) val = 0;
-        if (val > 100) val = 100;
-        total += val;
-    });
+  function goSec(secNum) {
+    document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+    document.getElementById('sec' + secNum).classList.add('active');
+    window.scrollTo(0, 0);
+  }
 
-    let avg = Math.round(total / count);
+  function calcSec(secNum) {
+    let checked = document.querySelector('#sec' + secNum + ' input[type="radio"]:checked');
+    let resDiv = document.getElementById('res' + secNum);
     
-    document.getElementById('averageScore').innerText = avg + " / 100";
-
-    let statusText = "";
-    if (avg >= 90) {
-        statusText = "ئاستی هەڵسەنگاندن: 90 - 100 (نایاب) - پابەندبوونێکی بەرز و بەردەوام لەژیانی ڕۆژانەت.";
-    } else if (avg >= 75) {
-        statusText = "ئاستی هەڵسەنگاندن: 75 - 89 (زۆر باش) - پابەندبوونێکی باش، لەگەڵ هەبوونی کەمێک کەمتەرخەمی.";
-    } else if (avg >= 50) {
-        statusText = "ئاستی هەڵسەنگاندن: 50 - 74 (پەسەند) - ئاستێکی مامناوەند، کە پێویستی بە هەوڵ و چاکسازی زیاتر هەیە.";
-    } else {
-        statusText = "ئاستی هەڵسەنگاندن: 0 - 49 (لاواز) - کەمتەرخەمییەکی بەرچاوت هەیە، پێویستی بە ئاگادربوونەوەو پێداچوونەوەیە.";
+    if (!checked) {
+      alert('تکایە سەرەتا وەلامێک هەڵبژێرە!');
+      return;
     }
 
-    document.getElementById('evalStatus').innerText = statusText;
-    document.getElementById('resultSection').style.display = 'block';
-    document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
-}
+    scores[secNum] = parseInt(checked.value);
+    resDiv.style.display = 'block';
+    resDiv.innerText = 'نمرەی تۆ لەم بەشەدا: ' + scores[secNum] + ' خاڵ';
+
+    document.getElementById('next' + secNum).style.display = 'inline-block';
+  }
+
+  function showFinal() {
+    let total = 0;
+    for (let key in scores) {
+      total += scores[key];
+    }
+
+    goSec('Final');
+    document.getElementById('totalScoreText').innerText = 'کۆی گشتی نمرەکانت لە هەموو بەشەکان: ' + total + ' لە ٣٠ خاڵ';
+
+    let feedback = '';
+    if (total >= 25) {
+      feedback = 'ماشاالله! ئاستێکی زۆر بەرزت هەیە، خوای گەورە سەباتکار و بەردەوامت بکات.';
+    } else if (total >= 15) {
+      feedback = 'ئاستێکی باشە، بەڵام پێویستیت بە هەوڵی زیاتر و بەردەوامی هەیە لە هەندێک لە بەشەکاندا.';
+    } else {
+      feedback = 'پێویستە زیاتر ئاگاداری عیبادەت و ڕەوشتەکانت بێت، هەوڵبدە قۆناغ بە قۆناغ ئاستی خۆت بەرز بپەڕێنیت.';
+    }
+
+    document.getElementById('feedbackText').innerText = feedback;
+  }
 </script>
 
 </body>
